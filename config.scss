@@ -1,0 +1,12 @@
+$selects-colors-support-parser: (
+    focus-border-color: color,
+    color: color,
+) !default;
+
+$selects-colors-support-extra-colors-palette: () !default;
+$selects-colors-support-skip-colors-palette: null !default;
+
+$selects-multiple-colors-support-parser: (
+    focus-option-checked-background: color,
+    focus-option-checked-color: 'background-inner-color',
+) !default;
