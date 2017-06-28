@@ -1,15 +1,19 @@
-@each $palette-color-prefix, $palette-color-variables in get-colors-palette($selects-colors-support-extra-colors-palette, $selects-colors-support-skip-colors-palette) {
+@each $palette-color-prefix, $palette-color-variables in get-colors-palette($select-colors-support-extra-colors-palette, $select-colors-support-skip-colors-palette) {
     .#{$colors-class-prefix}-#{$palette-color-prefix} select,
     select.#{$colors-class-prefix}-#{$palette-color-prefix} {
-        color: map_get($palette-color-variables, map_get($selects-colors-support-parser, color));
+        @include include-select-colors(parse-map($select-colors-support-parser, $palette-color-variables));
+        @include include-select-arrow-color-rgb(parse-map($select-arrow-colors-support-parser, $palette-color-variables));
 
-        &:focus {
-            border-color: map_get($palette-color-variables, map_get($selects-colors-support-parser, focus-border-color));
+        &[disabled] {
+            @include include-select-colors(parse-map($select-disabled-colors-support-parser, $palette-color-variables));
+        }
+
+        &[multiple] option:checked {
+            @include include-select-multiple-option-checked-colors(parse-map($select-multiple-colors-support-parser, $palette-color-variables));
         }
 
         &[multiple]:focus option:checked {
-            @include include-select-focus-multiple-option-checked-background(map_get($palette-color-variables, map_get($selects-multiple-colors-support-parser, focus-option-checked-background)));
-            color: map_get($palette-color-variables, map_get($selects-multiple-colors-support-parser, focus-option-checked-color));
+            @include include-select-multiple-option-checked-colors(parse-map($select-multiple-focus-colors-support-parser, $palette-color-variables));
         }
     }
 }
