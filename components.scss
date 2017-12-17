@@ -1,19 +1,6 @@
 @each $palette-color-prefix, $palette-color-variables in get-colors-palette($select-colors-support-extra-colors-palette, $select-colors-support-skip-colors-palette) {
     .#{$colors-class-prefix}-#{$palette-color-prefix} select,
     select.#{$colors-class-prefix}-#{$palette-color-prefix} {
-        @include include-select-colors(parse-map($select-colors-support-parser, $palette-color-variables));
-        @include include-select-arrow-color-rgb(parse-map($select-arrow-colors-support-parser, $palette-color-variables));
-
-        &[disabled] {
-            @include include-select-colors(parse-map($select-disabled-colors-support-parser, $palette-color-variables));
-        }
-
-        &[multiple] option:checked {
-            @include include-select-multiple-option-checked-colors(parse-map($select-multiple-colors-support-parser, $palette-color-variables));
-        }
-
-        &[multiple]:focus option:checked {
-            @include include-select-multiple-option-checked-colors(parse-map($select-multiple-focus-colors-support-parser, $palette-color-variables));
-        }
+        @include select-colors-propertys(parse-map($select-colors-support-parser, $palette-color-variables));
     }
 }
